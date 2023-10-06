@@ -23,4 +23,13 @@ if(!Bitrix\Main\Loader::includeModule("iblock") || !Bitrix\Main\Loader::includeM
         "TYPE" => "ERROR",
     ]);
     return;
-}
+}?>
+
+<pre>
+    <?=print_r(Rasputin\Forexwatch\ForexwatchTable::getList(
+        [
+        ]
+    )->FetchAll());
+
+    ?>
+</pre>
