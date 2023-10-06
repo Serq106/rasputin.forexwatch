@@ -1,9 +1,9 @@
 <?
-defined('B_PROLOG_INCLUDED') and (B_PROLOG_INCLUDED === true) or die();
-
-use Bitrix\Main\Loader;
-
-Loader::registerAutoLoadClasses('rasputin.forexwatch', [
-    '\Rasputin\Forexwatch\ForexwatchTable' => 'lib/RasputinForexwatch.php',
-]);
+CModule::AddAutoloadClasses(
+    'rasputin.forexwatch',
+    array(
+        'Rasputin\Forexwatch\ForexwatchTable' => 'lib/ForexwatchTable.php',
+        'Rasputin\Forexwatch\ParserCurrency' => 'lib/ParserCurrency.php',
+    )
+);
 ?>

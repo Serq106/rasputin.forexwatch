@@ -36,6 +36,11 @@ Class rasputin_forexwatch extends CModule
          */
         RegisterModuleDependences('main', 'OnBuildGlobalMenu', self::MODULE_ID, 'CHORedirect', 'OnBuildGlobalMenu');
 
+        require_once realpath(__DIR__.'/../include.php');
+
+        CAgent::AddAgent("Rasputin\Forexwatch\ParserCurrency::agentLaunchingParser();","rasputin.forexwatch", "N", 86400, "", "Y", "", 10);
+
+
         /**
          * Установка таблицы
          */
@@ -49,6 +54,11 @@ Class rasputin_forexwatch extends CModule
         global $DB;
         UnRegisterModule(self::MODULE_ID);
         UnRegisterModuleDependences('main', 'OnBuildGlobalMenu', self::MODULE_ID, 'CHOredirect', 'OnBuildGlobalMenu');
+
+        require_once realpath(__DIR__.'/../include.php');
+
+        CAgent::RemoveAgent("Rasputin\Forexwatch\ParserCurrency::agentLaunchingParser();", "rasputin.forexwatch");
+
 
         $DB->RunSQLBatch(dirname(__FILE__)."/sql/uninstall.sql");
 
