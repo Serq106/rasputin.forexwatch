@@ -41,33 +41,29 @@ class ForexwatchTable extends DataManager
      */
     public static function getMap()
     {
-        return [
-            new IntegerField(
-                'ID',
-                [
-                    'primary' => true,
-                    'autocomplete' => true,
-                    'title' => Loc::getMessage('FOREXWATCH_ENTITY_ID_FIELD')
-                ]
+        return array(
+            'ID' => array(
+                'data_type' => 'integer',
+                'primary' => true,
+                'autocomplete' => true,
+                'title' => Loc::getMessage('FOREXWATCH_ENTITY_ID_FIELD')
             ),
-            new TextField(
-                'CODE',
-                [
-                    'title' => Loc::getMessage('FOREXWATCH_ENTITY_CODE_FIELD')
-                ]
+            'CODE' => array(
+                'data_type' => 'text',
+                'title' => Loc::getMessage('FOREXWATCH_ENTITY_CODE_FIELD'),
+                'editable' => true
             ),
-            new TextField(
-                'DATE',
-                [
-                    'title' => Loc::getMessage('FOREXWATCH_ENTITY_DATE_FIELD')
-                ]
+            'DATE' => array(
+                'data_type' => 'text',
+                'title' => Loc::getMessage('FOREXWATCH_ENTITY_DATE_FIELD'),
+                'editable' => true
             ),
-            new TextField(
-                'COURSE',
-                [
-                    'title' => Loc::getMessage('FOREXWATCH_ENTITY_COURSE_FIELD')
-                ]
+            'COURSE' => array(
+                'data_type' => 'text',
+                'title' => Loc::getMessage('FOREXWATCH_ENTITY_COURSE_FIELD'),
+                'editable' => true
             ),
-        ];
+
+        );
     }
 }

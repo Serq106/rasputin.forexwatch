@@ -12,7 +12,7 @@ if ($APPLICATION->GetGroupRight("rasputin.forexwatch") >= "R") { // провер
         "icon" => "highloadblock_menu_icon",
         "page_icon" => "highloadblock_page_icon",
         "items_id" => "menu_ben",
-        "url"=>"/bitrix/admin/settings.php?lang=ru&mid=rasputin.forexwatch",
+        "url"=>"/bitrix/admin/rasputin_forexwatch_list.php",
     ];
 
     // вернем полученный список
