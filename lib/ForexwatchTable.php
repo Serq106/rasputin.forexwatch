@@ -54,12 +54,12 @@ class ForexwatchTable extends DataManager
                 'editable' => true
             ),
             'DATE' => array(
-                'data_type' => 'text',
+                'data_type' => 'date',
                 'title' => Loc::getMessage('FOREXWATCH_ENTITY_DATE_FIELD'),
                 'editable' => true
             ),
             'COURSE' => array(
-                'data_type' => 'text',
+                'data_type' => 'float',
                 'title' => Loc::getMessage('FOREXWATCH_ENTITY_COURSE_FIELD'),
                 'editable' => true
             ),

@@ -36,9 +36,12 @@ $bVarsFromForm = false;
 # Обработка данных
 if($REQUEST_METHOD == "POST" && ($save != "" || $apply != "") && check_bitrix_sessid())
 {
+    $rawDate = $_REQUEST['DATE'];
+    $dateTime = new \Bitrix\Main\Type\DateTime($rawDate, 'd.m.Y');
+
     $data = [
         'CODE' => $_REQUEST['CODE'],
-        'DATE' => $_REQUEST['DATE'],
+        'DATE' => $dateTime,
         'COURSE' => $_REQUEST['COURSE'],
     ];
 
@@ -159,7 +162,7 @@ $redirect_element = $res->fetch();
             <td width="60%">
                 <?if($field['editable']){?>
                     <?switch($field['data_type']){
-                        case 'datetime':
+                        case 'date':
                             echo CAdminCalendar::CalendarDate($code, $redirect_element[$code]->toString(), 19, true);
                             break;
                         case 'boolean':
@@ -169,6 +172,7 @@ $redirect_element = $res->fetch();
                             ?><textarea id="<?=$code?>" name="<?=$code?>" rows="5" cols="33"><?=$redirect_element[$code]?></textarea> <?
                             break;
                         case 'integer':
+                        case 'float':
                         case 'text':
                             ?><input type="text" name="<?=$code?>" value="<?=$redirect_element[$code]?>" />	<?
                             break;

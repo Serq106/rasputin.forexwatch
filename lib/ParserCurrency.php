@@ -25,11 +25,11 @@ class ParserCurrency
 
 
         $content_currency = simplexml_load_string($out);
-
+        $dateTime = new \Bitrix\Main\Type\DateTime();
         foreach ($content_currency->Valute as $valute) {
             $arFields['CODE'] = (string)$valute->CharCode[0];
-            $arFields['DATE'] = (string)$content_currency['Date'];
-            $arFields['COURSE'] = (string)$valute->Value[0];
+            $arFields['DATE'] = $dateTime;
+            $arFields['COURSE'] = (float)str_replace(',','.',$valute->Value[0]);
 
             $currency = \Rasputin\Forexwatch\ForexwatchTable::getList(
                 [

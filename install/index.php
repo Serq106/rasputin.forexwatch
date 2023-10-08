@@ -1,4 +1,6 @@
 <?
+use Bitrix\Main\Loader;
+
 IncludeModuleLangFile(__FILE__);
 if (class_exists("rasputin_forexwatch"))
     return;
@@ -40,11 +42,15 @@ Class rasputin_forexwatch extends CModule
 
         CAgent::AddAgent("Rasputin\Forexwatch\ParserCurrency::agentLaunchingParser();","rasputin.forexwatch", "N", 86400, "", "Y", "", 10);
 
-
-        /**
-         * Установка таблицы
-         */
         $DB->RunSQLBatch(dirname(__FILE__)."/sql/install.sql");
+
+        if (Loader::includeModule('iblock')) {
+            CopyDirFiles(
+                __DIR__ . '/components/forexwatch',
+                $_SERVER['DOCUMENT_ROOT'] . '/bitrix/components/forexwatch',
+                true, true
+            );
+        }
 
         return true;
     }
@@ -61,6 +67,11 @@ Class rasputin_forexwatch extends CModule
 
 
         $DB->RunSQLBatch(dirname(__FILE__)."/sql/uninstall.sql");
+
+        \Bitrix\Main\Loader::includeModule('iblock');
+        DeleteDirFilesEx(
+            '/bitrix/components/forexwatch'
+        );
 
         return true;
     }
